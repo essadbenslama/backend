@@ -13,6 +13,10 @@ dotenv.config();
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.get("/",(req,res)=>{
+    res.setHeader("Access-Control-Allow-Credentials","true")
+                  res.send("api is runnig")
+                  })
 mongoose.connect(process.env.DB_URL).then(console.log("db connected"))
 const port=process.env.port || 4000;
 app.use("/api/movies/",MovieRouter)
